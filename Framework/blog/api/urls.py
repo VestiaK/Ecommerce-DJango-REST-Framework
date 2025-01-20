@@ -21,5 +21,6 @@ urlpatterns = [
 
      path('api/register/', UserRegistrationView.as_view(), name='register'),
      path('register/', UserRegistrationView.as_view(), name='register'),
-     path('user-detail/', UserDetailView.as_view(), name="user-detail"),
+     path('user-detail/<int:user_id>/', UserDetailView.as_view(), name="user-detail"),
+     path('user-detail/', UserDetailView.as_view(), name="user-details"),
      ]

@@ -20,10 +20,25 @@ class UserDetailView(APIView):
         user = request.user
         groups = [group.name for group in user.groups.all()]
         return Response ({
+            "id": user.id,
             "username" : user.username,
+            "email" : user.email,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
             "is_superuser":user.is_superuser,
-            "groups":groups
+            "groups":groups  
         })
+        
+    def put(self, request):    
+            user = request.user
+            user.username = request.data.get('username', user.username)  
+            user.email = request.data.get('email', user.email)  
+            user.first_name = request.data.get('first_name', user.first_name)  
+            user.last_name = request.data.get('last_name', user.last_name)  
+            user.save()
+              
+            return Response({"message": "Profile updated successfully!"}, status=status.HTTP_200_OK) 
+
 
 class UserRegistrationView(generics.CreateAPIView):
     serializer_class = UserRegistrationSerializer
@@ -35,8 +50,8 @@ class UserRegistrationView(generics.CreateAPIView):
             user = serializer.save()
             return Response({"message": "User registered successfully."}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
+    
+   
 
 
 class ItemViewSet(viewsets.ModelViewSet):

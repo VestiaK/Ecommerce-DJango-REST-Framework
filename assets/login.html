@@ -61,7 +61,7 @@
 			</div>
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">
-					Don't have an account?<a href="#">Sign Up</a>
+					Don't have an account?<a href="register.html">Sign Up</a>
 				</div>
 				<div class="d-flex justify-content-center">
 					<a href="#">Forgot your password?</a>
@@ -70,52 +70,6 @@
 		</div>
 	</div>
 </div>
-
-<!-- <script>
-document.getElementById('login-form').addEventListener('submit', async (e)=>{
-	e.preventDefault();
-	const username = document.getElementById('username').value;
-	const password = document.getElementById('password').value;
-
-	const response = await fetch('http://127.0.0.1:8000/api/token/', {
-		methode: 'POST',
-		headers: {
-			'Content-Type' : 'application/json'
-		},
-		body: JSON.stringify({username, password})
-	});
-	if (response.ok){
-		const data = await response.json();
-		localstorage.setItem('access_token', data.access);
-		localstorage.setItem('refresh_token', data.refresh);
-		//redirect based on user role
-		fetchUserDetail();
-	}else{
-		document.getElementById('error-message').innerText = 'Invalid username or password';
-	}
-	});
-
-	async function fetchUserDetail(){
-		const response = await fetch ('http://127.0.0.1:8000/api/user-detail/', {
-			headers: {
-				'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-			}
-		});
-		if(response.ok){
-			const data = await response.json();
-			if (data.groups.includes('admin1')){
-				window.location.href = '/dashboardadmin.html';
-			}else if (data.is_superuser){
-				window.location.href = '/superdashboard.html';
-			}else{
-				window.location.href = '/user-dashboard.html';
-			}
-		}else{
-			localstorage.clear();
-			alert('Failed to fetch user details. Please login again');
-		}
-	}
-</script> -->
 
 <script>
 
@@ -183,50 +137,6 @@ document.getElementById('login-form').addEventListener('submit', async (e)=>{
 		$('#logout-button').hide();
 	}
 
-
-
 </script>
-<!-- <script>
-    $(document).ready(function(){
-        if (localStorage.getItem('access')){
-            $('#login-form').hide();
-            $('#logout-button').show();
-        }
-    });
-
-    //login function
-    $('#login-form').on('submit', function(e){
-        e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: 'http://127.0.0.1:8000/api/token/',
-            data:{
-                'username': $('#username').val(),
-                'password': $('#password').val()
-            },
-            success: function(response){
-                localStorage.setItem('access', response.access);
-                localStorage.setItem('refresh', response.refresh);
-                alert('Login Succesfull!');
-                $('#login-form').hide();
-                $('#logout-button').show();
-            },
-            error: function(response){
-                alert('Login Failed!');
-            }
-        });
-    });
-    //logout function
-    function logout(){
-    //hapus token dari localstorage
-    localStorage.removeItem('access');
-    localStorage.removeItem('refresh');
-    alert('You have been logged out.');
-
-    //tampilkan kembali form login dan sembunyikan tombol logout
-    $('#login-form').show();
-    $('#logout-button').hide();
-    }
-</script> -->
 </body>
 </html>

@@ -3,6 +3,7 @@ from . import views
 from rest_framework.routers import DefaultRouter
 from .views import *
 # from .views import ItemListViewSet, ItemDetailView
+from api.views import UserRegistrationView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
@@ -18,5 +19,7 @@ urlpatterns = [
      path('token/',TokenObtainPairView.as_view()),
      path('token/refresh/',TokenRefreshView.as_view()),
 
-     path('user-detail/', UserDetailView.as_view(),name="user-detail"),
+     path('api/register/', UserRegistrationView.as_view(), name='register'),
+     path('register/', UserRegistrationView.as_view(), name='register'),
+     path('user-detail/', UserDetailView.as_view(), name="user-detail"),
      ]
